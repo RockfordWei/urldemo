@@ -58,6 +58,7 @@ func rootUsersHandler(data: [String:Any]) throws -> RequestHandler {
     _ = curl.formAddPost(fields: fields)
 
     let r = curl.performFullySync()
+		curl.close()
     guard r.resultCode == 0 else {
       response.appendBody(string: "<H1>FAULT</H1>").completed()
       return
@@ -90,4 +91,3 @@ do {
 } catch {
 	fatalError("\(error)") // fatal error launching one of the servers
 }
-
